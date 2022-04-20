@@ -48,7 +48,8 @@ def sakums():
 -------------------------------------------------------------------------""" + color.END)
     print(color.BOLD + """Izvēlies funkcijas veidu
     """ + color.END)
-    print("1. Lineāra funkcija (y=kx+m) \n2. Kvadrāt funkcija (y=ax^2+bx+c)") 
+    print(color.PURPLE + "1. Lineāra funkcija (y=kx+m)" + color.END) 
+    print(color.CYAN + "\n2. Kvadrāt funkcija (y=ax^2+bx+c)" + color.END) 
     izvele = input(color.GREEN + "\nIevadi attiecīgo skaitli:" + color.END)
     if izvele in answer_1:
         l_izvele()
@@ -66,37 +67,45 @@ def sakums():
 def k_izvele():
     global a, b, c, x0, y0, r
     cls() 
-    print(color.GREEN + "------------Kvadrāt funkcija------------\n" + color.END)
-    print("""* y = ax^2 + bx + c
+    try:
+        print(color.CYAN + "------------Kvadrāt funkcija------------\n" + color.END)
+        print("""* y = ax^2 + bx + c
       ^
   Šī vērtība
-            """)
-    a = float(input(color.BOLD + "\nIevadi funkcijas a vertību:" + color.END))
-    cls()
+                """)
+        a = float(input(color.BOLD + "\nIevadi funkcijas a vertību:" + color.END))
+        cls()
 
-    if a == 0:
-        cls()
-        print(color.GREEN + "a vērtība nevar būt 0 - tad tā vairs nav kvadrāt funkcija, bet lineāra funkcija" + color.END)
-        time.sleep(4)
-        cls()
-        k_izvele()
+        if a == 0:
+            cls()
+            print(color.GREEN + "a vērtība nevar būt 0 - tad tā vairs nav kvadrāt funkcija, bet lineāra funkcija" + color.END)
+            time.sleep(4)
+            cls()
+            k_izvele()
+    except:
+        k_invalid()
     
-
-    print(color.GREEN + "------------Kvadrāt funkcija------------\n" + color.END)
-    print("""* y = ax^2 + bx + c
+    try:
+        print(color.CYAN + "------------Kvadrāt funkcija------------\n" + color.END)
+        print("""* y = ax^2 + bx + c
              ^
          Šī vērtība
-        """)
-    b = float(input(color.BOLD + "Ievadi funkcijas b vertību:" + color.END))
-    cls()
+            """)
+        b = float(input(color.BOLD + "Ievadi funkcijas b vertību:" + color.END))
+        cls()
+    except:
+        k_invalid()
 
-    print(color.GREEN + "------------Kvadrāt funkcija------------\n" + color.END)
-    print("""* y = ax^2 + bx + c
+    try:
+        print(color.CYAN + "------------Kvadrāt funkcija------------\n" + color.END)
+        print("""* y = ax^2 + bx + c
                   ^
-              Šī vērtība
-        """)
-    c = float(input(color.BOLD + "Ievadi funkcijas c vertību:" + color.END))
-    
+             Šī vērtība
+            """)
+        c = float(input(color.BOLD + "Ievadi funkcijas c vertību:" + color.END))
+
+    except:
+        k_invalid()
  
 
     x0 = -b / (2*a)
@@ -106,9 +115,16 @@ def k_izvele():
 
     k_apreikins()
 
+def k_invalid():
+    cls()
+    print(color.GREEN + "Ievadi skaitlisku vērtību\n\nvai decimāl daļas raksti ar . nevis ," + color.END)
+    time.sleep(3)
+    cls()
+    k_izvele()
+
 def k_apreikins():
     cls()
-    print(color.GREEN + "------------Kvadrāt funkcija------------\n" + color.END)
+    print(color.CYAN + "------------Kvadrāt funkcija------------\n" + color.END)
     print(color.BOLD + "Izvēlies ko vēlies apreiķināt" + color.END)
     print("\n1. Funkcijas virziens\n2. Krustpunktu ar y un x asi\n3. Funkcijas virsotne\n4. Definīcijas un vērtību apgabals\n")
     skaitlis_k = input(color.GREEN + "Ievadi attiecīgo skaitli:" + color.END)
@@ -134,14 +150,14 @@ def kvad_1():
     cls()
     if a > 0:
         cls()
-        print(color.GREEN + "------------Funkcijas virziens------------\n" + color.END)
+        print(color.CYAN + "------------Funkcijas virziens------------\n" + color.END)
         print(color.BOLD +"Kvadrāt funkcijas virziens ir uz:" + color.END)
         print(color.GREEN + "AUGŠU\n" + color.END)
         time.sleep(0.5)
         opt_k()
     elif a < 0:
         cls()
-        print(color.GREEN + "------------Funkcijas virziens------------\n" + color.END)
+        print(color.CYAN + "------------Funkcijas virziens------------\n" + color.END)
         print(color.BOLD +"Kvadrāt funkcijas virziens ir uz:" + color.END)
         print(color.GREEN + "LEJU\n" + color.END)
         time.sleep(0.5)
@@ -179,7 +195,7 @@ def opt_l():
 
 def kvad_2():
     cls()
-    print(color.GREEN + "------------Krustpunkts ar x un y asi------------\n" + color.END)
+    print(color.CYAN + "------------Krustpunkts ar x un y asi------------\n" + color.END)
 
     if r > 0:
         x1 = (((-b) + sqrt(r))/(2*a))     
@@ -209,7 +225,7 @@ def kvad_2():
 
 def kvad_3():
     cls()
-    print(color.GREEN + "------------Funkcijas virsotne------------\n" + color.END)
+    print(color.CYAN + "------------Funkcijas virsotne------------\n" + color.END)
     print(color.BOLD + "Kvadrāt funkcijas virsotnes kordinātes ir:" + color.END)
     print(color.GREEN + f"({x0};{y0})\n" + color.END)
     time.sleep(0.5)
@@ -218,10 +234,12 @@ def kvad_3():
 def kvad_4():
     cls()
     if a > 0:
+        print(color.CYAN + "------------Definīcijas un vērtību apgabals------------\n" + color.END)
         print(color.GREEN + f"""D(f) = (-∞;+∞)\nE(f) = [{y0};+∞)\n""" + color.END)
         time.sleep(0.5)
         opt_k()   
     elif a < 0:
+        print(color.CYAN + "------------Definīcijas un vērtību apgabals------------\n" + color.END)
         print(color.GREEN + f"""D(f) = (-∞;+∞)\nE(f) = (-∞;{y0})\n""" + color.END)
         time.sleep(0.5)
         opt_k()
@@ -230,25 +248,47 @@ def kvad_4():
 def l_izvele():
     global k, m
     cls()
-    print(color.GREEN + "------------Lineār funkcija------------\n" + color.END)
-    print("""* y = kx + m
+    try:
+        cls()
+        print(color.PURPLE + "------------Lineār funkcija------------\n" + color.END)
+        print("""* y = kx + m
       ^
-  Šī vērtība
-                """)
-    k = float(input(color.BOLD + "\nIevadi funkcijas k vertību:" + color.END))
-    cls()
+ Šī vērtība
+                    """)
+        k = float(input(color.BOLD + "\nIevadi funkcijas k vertību:" + color.END))
+    except:
+        l_invalid()
 
-    print(color.GREEN + "------------Lineār funkcija------------\n" + color.END)
-    print("""* y = kx + m
+    try:
+        cls()
+        print(color.PURPLE + "------------Lineār funkcija------------\n" + color.END)
+        print("""* y = kx + m
            ^
-      Šī vērtība
-                """)
-    m = float(input(color.BOLD + "\nIevadi funkcijas m vertību:" + color.END))
+       Šī vērtība
+                    """)
+        m = float(input(color.BOLD + "\nIevadi funkcijas m vertību:" + color.END))
+    except:
+        l_invalid()
+
     l_apreikins()
+
+def l_invalid():
+    cls()
+    print(color.GREEN + "Ievadi skaitlisku vērtību\n\nvai decimāl daļas raksti ar . nevis ," + color.END)
+    time.sleep(3)
+    cls()
+    l_izvele()
+
+def l_invalid2():
+    cls()
+    print(color.GREEN + "Ievadi skaitlisku vērtību\n\nvai decimāl daļas raksti ar . nevis ," + color.END)
+    time.sleep(3)
+    cls()
+    lin_4()
 
 def l_apreikins():
     cls()
-    print(color.GREEN + "------------Lineār funkcija------------\n" + color.END)
+    print(color.PURPLE + "------------Lineār funkcija------------\n" + color.END)
     print(color.BOLD + "Izvēlies ko vēlies apreiķināt" + color.END)
     print("\n1. Funkcijas virziens\n2. Krustpunktu ar y un x asi\n3. Definīcijas un vērtību apgabals\n4. Divu lineāru funkciju krustpunkti\n")
     skaitlis_l = input(color.GREEN + "Ievadi attiecīgo skaitli:" + color.END)
@@ -272,21 +312,21 @@ def lin_1():
     cls()
     if k > 0:
         cls()
-        print(color.GREEN + "------------Funkcijas virziens------------\n" + color.END)
+        print(color.PURPLE + "------------Funkcijas virziens------------\n" + color.END)
         print(color.BOLD +"Kvadrāt funkcijas virziens ir uz:" + color.END)
         print(color.GREEN + "AUGŠU\n" + color.END)
         time.sleep(0.5)
         opt_l()
     elif k < 0:
         cls()
-        print(color.GREEN + "------------Funkcijas virziens------------\n" + color.END)
+        print(color.PURPLE + "------------Funkcijas virziens------------\n" + color.END)
         print(color.BOLD +"Kvadrāt funkcijas virziens ir uz:" + color.END)
         print(color.GREEN + "LEJU\n" + color.END)
         time.sleep(0.5)
         opt_l()
     elif k == 0:
         cls()
-        print(color.GREEN + "------------Funkcijas virziens------------\n" + color.END)
+        print(color.PURPLE + "------------Funkcijas virziens------------\n" + color.END)
         print(color.BOLD +"Kvadrāt funkcijas virziens ir:" + color.END)
         print(color.GREEN + "KONSTANTA jeb nemainīga\n" + color.END)
         time.sleep(0.5)
@@ -294,7 +334,7 @@ def lin_1():
 
 def lin_2():
     cls()
-    print(color.GREEN + "------------Krustpunkts ar x un y asi------------\n" + color.END)
+    print(color.PURPLE + "------------Krustpunkts ar x un y asi------------\n" + color.END)
     xl = m/(-k)
     yl = m
     print(color.BOLD +"x ass krustpunkts:" + color.END)
@@ -303,10 +343,10 @@ def lin_2():
     print(color.GREEN + f"y = {yl}\n" + color.END)
     time.sleep(0.5)
     opt_l()
-    
 
 def lin_3():
     cls()
+    print(color.PURPLE + "------------Definīcijas un vērtību apgabals------------\n" + color.END)
     print(color.GREEN + f"""D(f) = (-∞;+∞)\nE(f) = [-∞;+∞)\n""" + color.END)
     print(color.BOLD + "\n*** lineāras funkcijas definīcijas un vērtības apgabals ir visi reālie skaitļi\n" + color.END)
     time.sleep(0.5)
@@ -314,36 +354,47 @@ def lin_3():
 
 def lin_4():
     cls()
-    print(color.GREEN + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
-
-    print(color.GREEN + "\nIevadi otrās lineārās funkcijas vērtības\n" + color.END)
-    print("""* y = kx + m
+    try:
+        cls()
+        print(color.PURPLE + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
+        print(color.PURPLE + "\nIevadi otrās lineārās funkcijas vērtības\n" + color.END)
+        print("""* y = kx + m
       ^
   Šī vērtība
-                """)
-    k2 = float(input(color.BOLD + "\nIevadi funkcijas k vertību:" + color.END))
-    cls()
-    print(color.GREEN + "\nIevadi otrās lineārās funkcijas vērtības\n" + color.END)
-    print(color.GREEN + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
-    print("""* y = kx + m
-           ^
-       Šī vērtība
-                """)
-    m2 = float(input(color.BOLD + "\nIevadi funkcijas m vertību:" + color.END))
-    cls()
+                    """)
+        k2 = float(input(color.BOLD + "\nIevadi funkcijas k vertību:" + color.END))
+
+    except:
+        l_invalid2()
     
+    try:
+
+        cls()
+        print(color.PURPLE + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
+        print(color.PURPLE + "\nIevadi otrās lineārās funkcijas vērtības\n" + color.END)
+        print("""* y = kx + m
+           ^
+      Šī vērtība
+                    """)
+        m2 = float(input(color.BOLD + "\nIevadi funkcijas m vertību:" + color.END))
+
+    except:
+        l_invalid2()
+    
+    if k2 == k:
+
+        cls()
+        print(color.PURPLE + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
+        print(color.BOLD + "Funkcijas abas ir paralēlas:\n" + color.END)
+        print(color.GREEN + "Nav krustpunktu (lineāras funkcijas nekrustojās)\n" + color.END)
+        opt_l()
+
     xi = (m2-m)/(k-k2)
     yi = (k*xi+m)
 
-    print(color.GREEN + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
+    print(color.PURPLE + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
     print(color.BOLD + "Krustpunkta kordenātes:" + color.END)
     print(color.GREEN + f"({xi};{yi})" + color.END)
-
-    if xi == yi:
-        cls()
-        print(color.GREEN + "------------Divu lineāru funkciju krustpunkti------------\n" + color.END)
-        print(color.BOLD + "\n Funkcijas abas ir paralēlas:" + color.END)
-        print(color.GREEN + "Nav krustpunktu (lineāras funkcijas nekrustojās)" + color.END)
-        opt_l()
+    opt_l()
 
 sakums()
